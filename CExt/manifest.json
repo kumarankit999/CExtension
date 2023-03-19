@@ -1,0 +1,30 @@
+{
+    "manifest_version": 3,
+    "name": "CXtension",
+    "version": "1.0",
+    "description": "Allows copy-pasting from and to websites",
+  
+    "permissions": [
+      "clipboardRead",
+      "clipboardWrite",
+      "activeTab",
+      "webRequest",
+      "contextMenus",
+      "https://www.google.com/"
+    ],
+  
+    "content_scripts": [
+      {
+        "matches": ["https://www.google.com/search*"],
+        "js": ["contentScript.js"],
+        "run_at": "document_idle",
+        "all_frames": true,
+        "match_about_blank": true,
+        "exclude_matches": ["https://www.google.com/images/*"]
+      }
+    ],
+  
+    "content_security_policy": {
+      "extension_pages": "script-src 'self'; object-src 'self';"
+    }
+}
